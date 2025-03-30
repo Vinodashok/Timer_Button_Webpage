@@ -49,13 +49,19 @@
 
             if (timeRemaining < 0) {
                 clearInterval(timerInterval);
-                buttonElement.textContent = 'Book Now';
-                buttonChangedTime = new Date(); // Record the time when the button changes
-                buttonElement.onclick = () => {
-                    const timeClicked = new Date();
-                    const timeDifference = ((timeClicked - buttonChangedTime) / 1000).toFixed(2); // Calculate time difference in seconds
-                    alert(`You clicked "Book Now" button ${timeDifference} seconds after it changed.`);
-                };
+
+                // Randomize delay between 2 and 10 seconds
+                const randomDelay = Math.floor(Math.random() * 9) + 2; // Random number between 2 and 10 seconds
+                
+                setTimeout(() => {
+                    buttonElement.textContent = 'Book Now';
+                    buttonChangedTime = new Date(); // Record the time when the button changes
+                    buttonElement.onclick = () => {
+                        const timeClicked = new Date();
+                        const timeDifference = ((timeClicked - buttonChangedTime) / 1000).toFixed(2); // Calculate time difference in seconds
+                        alert(`You clicked "Book Now" button ${timeDifference} seconds after it changed.`);
+                    };
+                }, randomDelay * 1000); // Set the delay in milliseconds
             }
         }
 
